@@ -1,5 +1,0 @@
-Manifest-Version: 1.0
-Created-By: IntelliJ IDEA
-Built-By: richard
-Build-Jdk: Homebrew OpenJDK 23.0.1 - aarch64
-
