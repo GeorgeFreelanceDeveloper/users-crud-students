@@ -30,7 +30,7 @@ public class UserDao {
         try (Connection conn = DbUtil.getConnection()) {
 
             final PreparedStatement preStmt = conn.prepareStatement(CREATE_USER_QUERY, PreparedStatement.RETURN_GENERATED_KEYS);
-            preStmt.setString(1, user.getUserName());
+            preStmt.setString(1, user.getUsername());
             preStmt.setString(2, user.getEmail());
             preStmt.setString(3, hashPassword(user.getPassword()));
             preStmt.executeUpdate();
@@ -63,7 +63,7 @@ public class UserDao {
             if (rs.next()) {
                 user = new User();
                 user.setId(rs.getInt("id"));
-                user.setUserName(rs.getString("username"));
+                user.setUsername(rs.getString("username"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
             }
@@ -80,9 +80,9 @@ public class UserDao {
 
         try (Connection connection = DbUtil.getConnection()) {
             final PreparedStatement preStmt = connection.prepareStatement(UPDATE_USER_QUERY);
-            preStmt.setString(1, user.getUserName());
+            preStmt.setString(1, user.getUsername());
             preStmt.setString(2, user.getEmail());
-            preStmt.setString(3, hashPassword(user.getPassword()));
+            preStmt.setString(3, user.getPassword());
             preStmt.setInt(4, user.getId());
 
             final int affectedRows = preStmt.executeUpdate();
@@ -127,7 +127,7 @@ public class UserDao {
             while (rs.next()) {
                 final User user = new User();
                 user.setId(rs.getInt("id"));
-                user.setUserName(rs.getString("username"));
+                user.setUsername(rs.getString("username"));
                 user.setEmail(rs.getString("email"));
                 user.setPassword(rs.getString("password"));
 
