@@ -13,10 +13,10 @@ import java.util.List;
 public class UserList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/user/list.jsp").forward(request, response);
         UserDao userDao = new UserDao();
         List<User> users = userDao.findAll();
         request.setAttribute("users", users);
+        getServletContext().getRequestDispatcher("/user/list.jsp").forward(request, response);
     }
 }
 

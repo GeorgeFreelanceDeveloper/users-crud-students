@@ -28,6 +28,6 @@ public class UserEdit extends HttpServlet {
         user.setPassword(req.getParameter("password"));
         UserDao userDao = new UserDao();
         userDao.updateUser(user);
-        resp.sendRedirect(req.getContextPath() + "/user/list.jsp");
+        resp.sendRedirect(req.getContextPath() + "/user/list");
     }
 }

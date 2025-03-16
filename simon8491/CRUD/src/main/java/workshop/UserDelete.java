@@ -13,6 +13,6 @@ public class UserDelete extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         UserDao userDao = new UserDao();
         userDao.deleteUser(Integer.parseInt(req.getParameter("id")));
-        resp.sendRedirect(req.getContextPath() + "/user/list.jsp");
+        resp.sendRedirect(req.getContextPath() + "/user/list");
     }
 }
