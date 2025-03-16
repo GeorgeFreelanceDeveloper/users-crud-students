@@ -4,7 +4,7 @@
 
 As you know, the aim of today's workshop is to create a web app that will allow you to manage users: UsersCRUD.
 
-Data to power your program will be downloaded from the MySQL database. You will use the classes User and UserDao created during the previous workshop.
+Data to power your program will be downloaded from the MySQL database. You will use the model User and UserDao created during the previous workshop.
 
 Example of interaction with the program:
 
@@ -20,7 +20,7 @@ This project uses practically all the things that were presented and discussed d
 * Servlets,
 * OOP,
 * MySQL,
-* DAO classes,
+* DAO model,
 * Maven.
 
 All of them will be used for this project! That will certainly consolidate your knowledge.
