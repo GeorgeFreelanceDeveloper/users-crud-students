@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-    <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-        <data-source source="LOCAL" name="@localhost" uuid="9850137e-cd4e-44b9-9fe8-6701b0a16355">
-            <driver-ref>mysql.8</driver-ref>
-            <synchronize>true</synchronize>
-            <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-            <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
-            <jdbc-additional-properties>
-                <property name="com.intellij.clouds.kubernetes.db.host.port" />
-                <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
-                <property name="com.intellij.clouds.kubernetes.db.container.port" />
-            </jdbc-additional-properties>
-            <working-dir>$ProjectFileDir$</working-dir>
-        </data-source>
-    </component>
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="workshop2@localhost" uuid="1098841b-c5ef-4261-bf46-a01817cb5ae8">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/workshop2</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="com.intellij.clouds.kubernetes.db.host.port" />
+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+        <property name="com.intellij.clouds.kubernetes.db.resource.type" value="Deployment" />
+        <property name="com.intellij.clouds.kubernetes.db.container.port" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="@localhost" uuid="0c2c6890-ddd8-4185-a297-f14331692545">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="com.intellij.clouds.kubernetes.db.host.port" />
+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+        <property name="com.intellij.clouds.kubernetes.db.resource.type" value="Deployment" />
+        <property name="com.intellij.clouds.kubernetes.db.container.port" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
 </project>

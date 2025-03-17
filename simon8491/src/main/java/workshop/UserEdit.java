@@ -16,18 +16,23 @@ public class UserEdit extends HttpServlet {
         UserDao userDao = new UserDao();
         User user = userDao.readUser(Integer.parseInt(id));
         req.setAttribute("user", user);
-        getServletContext().getRequestDispatcher("/user/edit.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/users/edit.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         User user = new User();
+        UserDao userDao = new UserDao();
         user.setId(Integer.parseInt(req.getParameter("id")));
         user.setUserName(req.getParameter("userName"));
         user.setEmail(req.getParameter("email"));
-        user.setPassword(req.getParameter("password"));
-        UserDao userDao = new UserDao();
+        // password re-hash
+        String password = req.getParameter("password");
+        if (password != null && !password.isEmpty()) {
+            userDao.hashPassword(password);
+        }
+        user.setPassword(password);
         userDao.updateUser(user);
-        resp.sendRedirect(req.getContextPath() + "/user/list");
+        resp.sendRedirect("/user/list");
     }
 }

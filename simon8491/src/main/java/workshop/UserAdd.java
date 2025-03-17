@@ -12,7 +12,7 @@ import java.io.IOException;
 public class UserAdd extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        getServletContext().getRequestDispatcher("/user/add.jsp").forward(req, resp);
+        getServletContext().getRequestDispatcher("/users/add.jsp").forward(req, resp);
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
@@ -22,6 +22,6 @@ public class UserAdd extends HttpServlet {
         user.setPassword(req.getParameter("userPassword"));
         UserDao userDao = new UserDao();
         userDao.createUser(user);
-        resp.sendRedirect(req.getContextPath() + "/user/list");
+        resp.sendRedirect("/user/list");
     }
 }
