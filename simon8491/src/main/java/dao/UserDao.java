@@ -72,7 +72,7 @@ public class UserDao {
             try (var stmtUpdateUser = connection.prepareStatement(UPDATE_USER_QUERY)) {
                 stmtUpdateUser.setString(1, user.getUserName());
                 stmtUpdateUser.setString(2, user.getEmail());
-                stmtUpdateUser.setString(3, this.hashPassword(user.getPassword()));
+                stmtUpdateUser.setString(3, user.getPassword());
                 stmtUpdateUser.setInt(4, user.getId());
                 stmtUpdateUser.executeUpdate();
             }
