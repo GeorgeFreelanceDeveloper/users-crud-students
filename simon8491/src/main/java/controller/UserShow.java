@@ -12,7 +12,7 @@ import java.io.IOException;
 public class UserShow extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDao userDao = new UserDao();
+        final UserDao userDao = new UserDao();
         String id = request.getParameter("id");
         User readOne = userDao.readUser(Integer.parseInt(id));
         request.setAttribute("user", readOne);

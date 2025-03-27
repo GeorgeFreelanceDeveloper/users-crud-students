@@ -13,7 +13,7 @@ public class UserEdit extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String id = req.getParameter("id");
-        UserDao userDao = new UserDao();
+        final UserDao userDao = new UserDao();
         User user = userDao.readUser(Integer.parseInt(id));
         req.setAttribute("user", user);
         getServletContext().getRequestDispatcher("/users/edit.jsp").forward(req, resp);
@@ -21,8 +21,8 @@ public class UserEdit extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        User user = new User();
-        UserDao userDao = new UserDao();
+        final User user = new User();
+        final UserDao userDao = new UserDao();
         user.setId(Integer.parseInt(req.getParameter("id")));
         user.setUserName(req.getParameter("userName"));
         user.setEmail(req.getParameter("email"));

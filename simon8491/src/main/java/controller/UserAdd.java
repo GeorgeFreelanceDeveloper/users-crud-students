@@ -16,11 +16,11 @@ public class UserAdd extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        User user = new User();
+        final User user = new User();
         user.setUserName(req.getParameter("userName"));
         user.setEmail(req.getParameter("userEmail"));
         user.setPassword(req.getParameter("userPassword"));
-        UserDao userDao = new UserDao();
+        final UserDao userDao = new UserDao();
         userDao.createUser(user);
         resp.sendRedirect("/user/list");
     }

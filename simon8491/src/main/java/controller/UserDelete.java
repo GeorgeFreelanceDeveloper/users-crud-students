@@ -11,7 +11,7 @@ import java.io.IOException;
 public class UserDelete extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        UserDao userDao = new UserDao();
+        final UserDao userDao = new UserDao();
         userDao.deleteUser(Integer.parseInt(req.getParameter("id")));
         resp.sendRedirect(req.getContextPath() + "/user/list");
     }
