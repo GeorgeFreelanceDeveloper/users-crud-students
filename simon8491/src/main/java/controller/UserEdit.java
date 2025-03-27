@@ -29,9 +29,8 @@ public class UserEdit extends HttpServlet {
         // password re-hash
         String password = req.getParameter("password");
         if (password != null && !password.isEmpty()) {
-            userDao.hashPassword(password);
+            user.setPassword(userDao.hashPassword(password));
         }
-        user.setPassword(password);
         userDao.updateUser(user);
         resp.sendRedirect("/user/list");
     }
