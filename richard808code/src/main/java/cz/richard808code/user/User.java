@@ -1,4 +1,4 @@
-package cz.student.richard808code;
+package cz.richard808code.user;
 
 import java.util.Objects;
 

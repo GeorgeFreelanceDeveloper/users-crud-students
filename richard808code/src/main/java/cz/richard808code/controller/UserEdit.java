@@ -1,5 +1,8 @@
-package cz.student.richard808code;
+package cz.richard808code.controller;
 
+
+import cz.richard808code.dao.UserDao;
+import cz.richard808code.user.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,23 +14,23 @@ import java.io.IOException;
 @WebServlet("/user/edit")
 public class UserEdit extends HttpServlet {
 
-    UserDao userDao = new UserDao();
+    private final UserDao userDao = new UserDao();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        User user = userDao.read(id);
+        final int id = Integer.parseInt(req.getParameter("id"));
+        final User user = userDao.read(id);
         req.setAttribute("user", user);
         req.getRequestDispatcher("/user/edit.jsp").forward(req, resp);
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int id = Integer.parseInt(req.getParameter("id"));
-        String username = req.getParameter("username");
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
+        final int id = Integer.parseInt(req.getParameter("id"));
+        final String username = req.getParameter("username");
+        final String email = req.getParameter("email");
+        final String password = req.getParameter("password");
 
-        User user = new User();
+        final User user = new User();
         user.setId(id);
         user.setUsername(username);
         user.setEmail(email);

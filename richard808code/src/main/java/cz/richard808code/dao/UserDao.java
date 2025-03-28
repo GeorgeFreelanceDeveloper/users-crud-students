@@ -1,6 +1,7 @@
-package cz.student.richard808code;
+package cz.richard808code.dao;
 
-import cz.common.DbUtil;
+import cz.richard808code.dao.DbUtil;
+import cz.richard808code.user.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;

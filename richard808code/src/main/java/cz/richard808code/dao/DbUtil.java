@@ -1,4 +1,5 @@
-package cz.common;
+package cz.richard808code.dao;
+
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -14,8 +15,8 @@ public class DbUtil {
     private static DataSource getInstance() {
         if (dataSource == null) {
             try {
-                Context initContext = new InitialContext();
-                Context envContext = (Context)initContext.lookup("java:/comp/env");
+                final Context initContext = new InitialContext();
+                final Context envContext = (Context)initContext.lookup("java:/comp/env");
                 dataSource = (DataSource)envContext.lookup("jdbc/users");
             } catch (NamingException e) { e.printStackTrace(); }
         }

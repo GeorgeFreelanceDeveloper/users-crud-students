@@ -1,5 +1,7 @@
-package cz.student.richard808code;
+package cz.richard808code.controller;
 
+import cz.richard808code.dao.UserDao;
+import cz.richard808code.user.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -11,7 +13,7 @@ import java.io.IOException;
 @WebServlet("/user/add")
 public class UserAdd extends HttpServlet {
 
-    UserDao userDao = new UserDao();
+    private final UserDao userDao = new UserDao();
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -19,13 +21,13 @@ public class UserAdd extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String username = req.getParameter("username");
-        String email = req.getParameter("email");
-        String password = req.getParameter("password");
+        final String username = req.getParameter("username");
+        final String email = req.getParameter("email");
+        final String password = req.getParameter("password");
 
-        String hashedPassword = userDao.hashPassword(password);
+        final String hashedPassword = userDao.hashPassword(password);
 
-        User user = new User();
+        final User user = new User();
         user.setUsername(username);
         user.setEmail(email);
         user.setPassword(hashedPassword);
