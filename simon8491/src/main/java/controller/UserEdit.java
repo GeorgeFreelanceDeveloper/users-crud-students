@@ -23,15 +23,21 @@ public class UserEdit extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         final User user = new User();
         final UserDao userDao = new UserDao();
-        user.setId(Integer.parseInt(req.getParameter("id")));
-        user.setUserName(req.getParameter("userName"));
-        user.setEmail(req.getParameter("email"));
-        // password re-hash
-        String password = req.getParameter("password");
-        if (password != null && !password.isEmpty()) {
-            user.setPassword(userDao.hashPassword(password));
+
+        if (req.getParameter("id") != null && !req.getParameter("id").isEmpty()) {
+            user.setId(Integer.parseInt(req.getParameter("id")));
         }
+        if (req.getParameter("userName") != null && !req.getParameter("userName").isEmpty()) {
+            user.setUserName(req.getParameter("userName"));
+        }
+        if (req.getParameter("email") != null && !req.getParameter("email").isEmpty()) {
+            user.setEmail(req.getParameter("email"));
+        }
+        if (req.getParameter("password") != null && !req.getParameter("password").isEmpty()) {
+            user.setPassword(userDao.hashPassword(req.getParameter("password")));
+        }
+
         userDao.updateUser(user);
-        resp.sendRedirect("/user/list");
+        resp.sendRedirect(req.getContextPath() + "/user/list");
     }
 }
