@@ -1,4 +1,6 @@
+package dao;
 
+import model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
@@ -63,12 +65,12 @@ public class UserDao {
         }
     }
     public void update(User user) {
-        try (Connection conn = DbUtil.getConnection(); Scanner sc = new Scanner(System.in)) {
+        try (Connection conn = DbUtil.getConnection()) {
 
             final PreparedStatement statement = conn.prepareStatement(UPDATE_USER);
             statement.setString(1, user.getUserName());
             statement.setString(2, user.getEmail());
-            statement.setString(3, hashPassword(user.getPassword()));
+            statement.setString(3, user.getPassword());
             statement.setInt(4, user.getId());
 
             final int affectedRows = statement.executeUpdate();
@@ -97,12 +99,8 @@ public class UserDao {
             throw new RuntimeException(e);
         }
     }
-    private User[] addToArray(User u, User[] users) {
-        User[] tmpUsers = Arrays.copyOf(users, users.length + 1);
-        tmpUsers[users.length] = u;
-        return tmpUsers;
-    }
-    public User [] readAll() {
+
+    public User[] readAll() {
         ArrayList<User> list = new ArrayList<>();
         try (Connection conn = DbUtil.getConnection()) {
             final PreparedStatement statement = conn.prepareStatement(SELECT_ALL);

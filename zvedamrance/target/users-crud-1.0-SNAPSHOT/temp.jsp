@@ -87,7 +87,7 @@
         </div>
         <div class="card shadow mb-4">
           <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">User list</h6>
+            <h6 class="m-0 font-weight-bold text-primary">model.User list</h6>
           </div>
           <div class="card-body">
             <div class="table-responsive">
@@ -95,7 +95,7 @@
                 <thead>
                 <tr>
                   <th scope="col">Id</th>
-                  <th scope="col">User name</th>
+                  <th scope="col">model.User name</th>
                   <th scope="col">Email</th>
                   <th scope="col">Action</th>
                 </tr>
