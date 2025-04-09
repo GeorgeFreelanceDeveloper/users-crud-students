@@ -1,4 +1,6 @@
+package dao;
 
+import model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.Connection;
@@ -9,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao {
-    private static final String CREATE_USER =
+    protected static final String CREATE_USER =
             "INSERT INTO users(username, email, password) VALUES (?, ?, ? )";
 
 
@@ -38,7 +40,7 @@ public class UserDao {
         }
     }
 
-    private static final String UPDATE_USER =
+    protected static final String UPDATE_USER =
             "UPDATE users SET username = ?, email = ?, password = ? WHERE id = ?";
 
     public void update(User user) { //metoda pro aktualizovani inforamci uzivatele
@@ -47,7 +49,7 @@ public class UserDao {
 
             statement.setString(1, user.getUserName());
             statement.setString(2, user.getEmail());
-            statement.setString(3, hashPassword(user.getPassword()));
+            statement.setString(3, user.getPassword());
             statement.setInt(4, user.getId());
 
             final int affectedRows = statement.executeUpdate();
@@ -63,7 +65,7 @@ public class UserDao {
         }
     }
 
-    private static final String READ_USER =
+    protected static final String READ_USER =
             "SELECT * FROM users WHERE id = ?";
 
     public User read(int userId) { //metoda pro precteni informaci uzivatele
@@ -89,7 +91,7 @@ public class UserDao {
         return null;
     }
 
-    private static final String DELETE_USER =
+    protected static final String DELETE_USER =
             "DELETE FROM users WHERE id = ?";
 
     public void delete(int userId) { // metoda pro smazani uzivatele
@@ -110,7 +112,7 @@ public class UserDao {
         }
     }
 
-    private static final String READ_ALL_USERS =
+    protected static final String READ_ALL_USERS =
             "SELECT * FROM users";
 
     public List<User> findAll() {  //metoda pro zobrazeni vsech uctu
@@ -119,7 +121,7 @@ public class UserDao {
             final PreparedStatement statement = conn.prepareStatement(READ_ALL_USERS);
             final ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
-                final User user = new User();
+                final User user  = new User();
                 user.setId(resultSet.getInt("id"));
                 user.setUserName(resultSet.getString("username"));
                 user.setEmail(resultSet.getString("email"));
@@ -135,7 +137,7 @@ public class UserDao {
     }
 
 
-    private String hashPassword(String password) { // zabezpecovaci metoda hesel
+    public String hashPassword(String password) { // zabezpecovaci metoda hesel
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 

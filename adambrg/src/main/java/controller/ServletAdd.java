@@ -1,3 +1,6 @@
+package controller;
+import dao.UserDao;
+import model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,9 +16,9 @@ public class ServletAdd extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String userName = request.getParameter("userName");
-        String userEmail = request.getParameter("userEmail");
-        String userPassword = request.getParameter("userPassword");
+        final String userName = request.getParameter("userName");
+        final String userEmail = request.getParameter("userEmail");
+        final String userPassword = request.getParameter("userPassword");
 
         if (userName == null || userName.trim().isEmpty() ||
                 userEmail == null || userEmail.trim().isEmpty() ||
@@ -26,12 +29,12 @@ public class ServletAdd extends HttpServlet {
             return;
         }
 
-        User user = new User();
+        final User user = new User();
         user.setUserName(userName);
         user.setEmail(userEmail);
         user.setPassword(userPassword);
 
-        UserDao userDao = new UserDao();
+        final UserDao userDao = new UserDao();
         userDao.create(user);
 
         response.sendRedirect(request.getContextPath() + "/user/list");
