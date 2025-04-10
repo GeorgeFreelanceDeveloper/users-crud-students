@@ -16,7 +16,7 @@ public class UserDao {
     private static final String UPDATE_USER_QUERY = "UPDATE users SET email = ?, username = ?, password= ? WHERE id = ?";
     private static final String DELETE_USER_QUERY = "DELETE FROM users WHERE id = ?";
 
-    private String hashPasswd(String passwd) {
+    public String hashPasswd(String passwd) {
         return BCrypt.hashpw(passwd, BCrypt.gensalt());
     }
 
@@ -65,7 +65,7 @@ public class UserDao {
             final PreparedStatement statement = conn.prepareStatement(UPDATE_USER_QUERY);
             statement.setString(1, user.getEmail());
             statement.setString(2, user.getUserName());
-            statement.setString(3, this.hashPasswd(user.getPassword()));
+            statement.setString(3, user.getPassword());
             statement.setInt(4, user.getId());
             statement.executeUpdate();
         } catch (SQLException e) {

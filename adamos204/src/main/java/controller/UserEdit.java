@@ -23,13 +23,20 @@ public class UserEdit extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        User user = new User();
-        UserDao userDao = new UserDao();
+        final UserDao userDao = new UserDao();
+        final User user = userDao.read(Integer.parseInt(req.getParameter("id")));
 
-        user.setId(Integer.parseInt(req.getParameter("id")));
-        user.setUserName(req.getParameter("userName"));
-        user.setEmail(req.getParameter("userEmail"));
-        user.setPassword(req.getParameter("userPassword"));
+        if(req.getParameter("userName") != null && !req.getParameter("userName").isEmpty()) {
+            user.setUserName(req.getParameter("userName"));
+        }
+
+        if(req.getParameter("password") != null && !req.getParameter("password").isEmpty()) {
+            user.setPassword(userDao.hashPasswd(req.getParameter("password")));
+        }
+
+        if(req.getParameter("email") != null && !req.getParameter("email").isEmpty()) {
+            user.setEmail(req.getParameter("email"));
+        }
 
         userDao.update(user);
 
