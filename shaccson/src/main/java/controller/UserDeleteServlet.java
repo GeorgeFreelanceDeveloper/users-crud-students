@@ -1,3 +1,6 @@
+package controller;
+
+import dao.UserDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,11 +11,11 @@ import java.io.IOException;
 @WebServlet("/user/delete")
 public class UserDeleteServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String idParam = request.getParameter("id");
+        final String idParam = request.getParameter("id");
 
         if (idParam != null) {
-            int id = Integer.parseInt(idParam);
-            UserDao userDao = new UserDao();
+            final int id = Integer.parseInt(idParam);
+            final UserDao userDao = new UserDao();
             userDao.deleteUser(id);
         }
 

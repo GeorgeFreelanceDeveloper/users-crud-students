@@ -1,3 +1,6 @@
+package dao;
+
+import model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import java.sql.*;
@@ -64,7 +67,7 @@ public class UserDao {
              final PreparedStatement statement = conn.prepareStatement(UPDATE_USER_QUERY)) {
             statement.setString(1, user.getUsername());
             statement.setString(2, user.getEmail());
-            statement.setString(3, hashPassword(user.getPassword()));
+            statement.setString(3, user.getPassword());
             statement.setInt(4, user.getId());
             final int affectedRows = statement.executeUpdate();
             if (affectedRows > 0) {
@@ -115,7 +118,7 @@ public class UserDao {
         return users;
     }
 
-    private String hashPassword(final String password) {
+    public String hashPassword(final String password) {
         return BCrypt.hashpw(password, BCrypt.gensalt());
     }
 }

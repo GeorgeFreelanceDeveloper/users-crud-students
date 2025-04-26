@@ -1,3 +1,7 @@
+package controller;
+
+import dao.UserDao;
+import model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,12 +12,12 @@ import java.io.IOException;
 @WebServlet("/user/show")
 public class UserShowServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String idParam = request.getParameter("id");
+        final String idParam = request.getParameter("id");
 
         if (idParam != null) {
-            int id = Integer.parseInt(idParam);
-            UserDao userDao = new UserDao();
-            User user = userDao.getUserById(id);
+            final int id = Integer.parseInt(idParam);
+            final UserDao userDao = new UserDao();
+            final User user = userDao.getUserById(id);
             request.setAttribute("user", user);
         }
 

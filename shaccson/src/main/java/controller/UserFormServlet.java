@@ -1,3 +1,7 @@
+package controller;
+
+import dao.UserDao;
+import model.User;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -8,12 +12,12 @@ import java.io.IOException;
 @WebServlet("/user/form")
 public class UserFormServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String idParam = request.getParameter("id");
+        final String idParam = request.getParameter("id");
 
         if (idParam != null) {
-            int id = Integer.parseInt(idParam);
-            UserDao userDao = new UserDao();
-            User user = userDao.getUserById(id);
+            final int id = Integer.parseInt(idParam);
+            final UserDao userDao = new UserDao();
+            final User user = userDao.getUserById(id);
             request.setAttribute("user", user);
         }
 
@@ -22,13 +26,13 @@ public class UserFormServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDao userDao = new UserDao();
-        String idParam = request.getParameter("id");
-        String username = request.getParameter("username");
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
+        final UserDao userDao = new UserDao();
+        final String idParam = request.getParameter("id");
+        final String username = request.getParameter("username");
+        final String email = request.getParameter("email");
+        final String password = request.getParameter("password");
 
-        User user = new User();
+        final User user = new User();
         user.setUsername(username);
         user.setEmail(email);
 
@@ -36,7 +40,7 @@ public class UserFormServlet extends HttpServlet {
             user.setId(Integer.parseInt(idParam));
 
             if (password == null || password.trim().isEmpty()) {
-                User existingUser = userDao.getUserById(user.getId());
+                final User existingUser = userDao.getUserById(user.getId());
                 user.setPassword(existingUser.getPassword());
             } else {
                 user.setPassword(password);

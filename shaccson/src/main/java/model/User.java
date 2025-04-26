@@ -1,3 +1,5 @@
+package model;
+
 import java.util.Objects;
 
 public class User {
@@ -51,7 +53,7 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
+        final User user = (User) o;
         return id == user.id || email.equals(user.email);
     }
 
